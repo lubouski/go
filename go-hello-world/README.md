@@ -6,7 +6,7 @@ We using Docker multistage build, and `goland-alpine` image to build binary and 
 $ sudo docker build -t mytestbox .
 ```
 ```
-$ sudo docker run -d -p 9999:8888 myhello
+$ sudo docker run -d -p 9999:8888 mytestbox
 ```
 ```
 $ curl http://localhost:9999/
