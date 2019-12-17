@@ -5,5 +5,6 @@ Written on Go with Operator SDK.
 * [Install operator-framework](https://github.com/operator-framework/operator-sdk)
 ```
 $ operator-sdk build lubowsky/apln-operator:latest
+$ operator-sdk generate k8s
 ```
 Follow instructions from installation guide. 
