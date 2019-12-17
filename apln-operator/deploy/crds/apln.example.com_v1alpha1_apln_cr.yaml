@@ -1,0 +1,7 @@
+apiVersion: apln.example.com/v1alpha1
+kind: Apln
+metadata:
+  name: example-apln
+spec:
+  # Add fields here
+  size: 4
