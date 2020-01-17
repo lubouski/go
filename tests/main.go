@@ -45,15 +45,18 @@ func MergeSlices(sl1 []float32, sl2 []int32) []int {
 }
 
 func GetMapValuesSortedByKey(mm map[int]string) []string {
-    newsl := make([]string, len(mm))
-    var v string
-    idx := 0
-    for _, v = range mm {
-        newsl[idx] = v
-        idx++
+    newsl := make([]int, 0, len(mm))
+    sortedSl := make([]string, 0, len(mm))
+    for k := range mm {
+        newsl = append(newsl, k)
     }
-    sort.Strings(newsl)
-    return newsl
+    sort.Ints(newsl)
+
+    for _, k := range newsl {
+        sortedSl = append(sortedSl, mm[k])
+    }
+
+    return sortedSl
 }
 
 func main() {
@@ -72,5 +75,5 @@ func main() {
     ReturnIntSlice()
     IntSliceToString([]int{17, 23, 100500})
     MergeSlices([]float32{1.1, 2.1, 3.1}, []int32{4, 5})
-    GetMapValuesSortedByKey(input)
+    fmt.Println(GetMapValuesSortedByKey(input))
 }
