@@ -1,44 +1,53 @@
 package main
 
-import (
-	"math"
-	"fmt"
-)
+import "fmt"
 
-type shape interface {
-	area() float64
+type TapePlayer struct {
+	Batteries string
 }
 
-type circle struct {
-	radius float64
+func (t TapePlayer) Play(song string) {
+	fmt.Println("Playing", song)
 }
 
-type rect struct {
-	width  float64
-	height float64
+func (t TapePlayer) Stop() {
+	fmt.Println("Stopped!")
 }
 
-func (r rect) area() float64 {
-	return r.width * r.height
+type TapeRecorder struct {
+	Microphone int
 }
 
-func (c circle) area() float64 {
-	return math.Pi * c.radius * c.radius
+func (t TapeRecorder) Play(song string) {
+	fmt.Println("Playing", song)
+}
+
+func (t TapeRecorder) Stop() {
+	fmt.Println("Stopped!")
+}
+
+func (t TapeRecorder) Record() {
+	fmt.Println("Recording")
+}
+
+// Declaring interface and function which could use both types as input (TapePlayer and TapeRecorder)
+
+type Player interface {
+	Play(string)
+	Stop()
+}
+
+func playList(device Player, songs []string) {
+	for _, song := range songs {
+		device.Play(song)
+	}
+	device.Stop()
 }
 
 func main() {
-	c1 := circle{4.5}
-	r1 := rect{5, 8}
-	shapes := []shape{c1, r1}
-
-	/*	but we don't know the type of circle and rect functions
-
-		shapes := []type{c1, r1}
-		shape[0].area()
-		shape[1].area()
-	*/
-
-	for _, shape := range shapes {
-		fmt.Println(shape.area())
-	}
+	mixtape := []string{"Survivor","Horror","Numb"}
+	var player Player = TapePlayer{}
+	playList(player, mixtape)
+	player = TapeRecorder{}
+	playList(player, mixtape)
 }
